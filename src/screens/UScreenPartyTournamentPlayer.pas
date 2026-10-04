@@ -428,7 +428,16 @@ begin
 
   // Templates for Names Mod
   for I := 0 to 15 do
-    Button[I].Text[0].Text := Ini.Name[I];
+  begin
+    if (I < IMaxPlayerCount) and
+       ((Ini.Name[I] = 'Player' + IntToStr(I + 1)) or
+        (Ini.Name[I] = 'Player ' + IntToStr(I + 1)) or
+        (Ini.Name[I] = IPlayerTranslated[I]) or
+        (Ini.Name[I] = ULanguage.Language.Translate('OPTION_VALUE_PLAYER') + IntToStr(I + 1))) then
+      Button[I].Text[0].Text := IPlayerTranslated[I]
+    else
+      Button[I].Text[0].Text := Ini.Name[I];
+  end;
 
   UpdateInterface;
 
