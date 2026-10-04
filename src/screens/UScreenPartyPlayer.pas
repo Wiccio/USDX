@@ -588,14 +588,32 @@ begin
 
     // Templates for Names Mod
     for I := 1 to 4 do
-      Button[I].Text[0].Text := Ini.Name[I-1];
-
+    begin
+      if (Ini.Name[I-1] = 'Player' + IntToStr(I)) or
+         (Ini.Name[I-1] = 'Player ' + IntToStr(I)) then
+        Button[I].Text[0].Text := IPlayerTranslated[I-1]
+      else
+        Button[I].Text[0].Text := Ini.Name[I-1];
+    end;
+  
     for I := 6 to 9 do
-      Button[I].Text[0].Text := Ini.Name[I-2];
-
+    begin
+      if (Ini.Name[I-2] = 'Player' + IntToStr(I-1)) or
+         (Ini.Name[I-2] = 'Player ' + IntToStr(I-1)) then
+        Button[I].Text[0].Text := IPlayerTranslated[I-2]
+      else
+        Button[I].Text[0].Text := Ini.Name[I-2];
+    end;
+  
     for I := 11 to 14 do
-      Button[I].Text[0].Text := Ini.Name[I-3];
-
+    begin
+      if (Ini.Name[I-3] = 'Player' + IntToStr(I-2)) or
+         (Ini.Name[I-3] = 'Player ' + IntToStr(I-2)) then
+        Button[I].Text[0].Text := IPlayerTranslated[I-3]
+      else
+        Button[I].Text[0].Text := Ini.Name[I-3];
+    end;
+  
     Button[0].Text[0].Text := Ini.NameTeam[0];
     Button[5].Text[0].Text := Ini.NameTeam[1];
     Button[10].Text[0].Text := Ini.NameTeam[2];
