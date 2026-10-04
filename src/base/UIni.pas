@@ -989,6 +989,12 @@ begin
     IPlayerTranslated[I] := ULanguage.Language.Translate('OPTION_VALUE_PLAYER') + ' ' + IntToStr(I + 1);
   end;
 
+  // Team names
+  for I := 0 to 2 do
+  begin
+    ITeamTranslated[I] := ULanguage.Language.Translate('OPTION_VALUE_TEAM') + ' ' + IntToStr(I + 1);
+  end;
+
   // Webcam
   IWebcamFlipTranslated[0]          := ULanguage.Language.Translate('OPTION_VALUE_OFF');
   IWebcamFlipTranslated[1]          := ULanguage.Language.Translate('OPTION_VALUE_ON');
