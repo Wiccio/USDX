@@ -584,6 +584,7 @@ var
 
   // Name
   IPlayerTranslated:      array[0..(IMaxPlayerCount-1)] of UTF8String;
+  ITeamTranslated:        array[0..2] of UTF8String;
 
   IRed:       array[0..255] of UTF8String;
   IGreen:     array[0..255] of UTF8String;
