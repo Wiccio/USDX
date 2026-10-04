@@ -120,6 +120,24 @@ uses
 var
   Num: array[0..2] of integer;
 
+function IsDefaultPlayerName(const Name: UTF8String; Player: integer): boolean;
+begin
+  Result :=
+    (Name = 'Player' + IntToStr(Player)) or
+    (Name = 'Player ' + IntToStr(Player)) or
+    (Name = IPlayerTranslated[Player - 1]) or
+    (Name = ULanguage.Language.Translate('OPTION_VALUE_PLAYER') + IntToStr(Player));
+end;
+
+function IsDefaultTeamName(const Name: UTF8String; Team: integer): boolean;
+begin
+  Result :=
+    (Name = 'Team' + IntToStr(Team)) or
+    (Name = 'Team ' + IntToStr(Team)) or
+    (Name = ITeamTranslated[Team - 1]) or
+    (Name = ULanguage.Language.Translate('OPTION_VALUE_TEAM') + IntToStr(Team));
+end;
+
 procedure TScreenPartyPlayer.CacheCurrentSetup;
 var
   Team, Player: integer;
