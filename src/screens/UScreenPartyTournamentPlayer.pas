@@ -47,6 +47,7 @@ type
   TScreenPartyTournamentPlayer = class(TMenu)
     private
       SelectPlayers: cardinal;
+      LastEditedButton: integer;
 
       procedure UpdateInterface;
       procedure UpdatePartyTournament;
@@ -204,8 +205,22 @@ begin
     // check normal keys
     if (IsPrintableChar(CharCode)) then
     begin
-      Button[Interactions[Interaction].Num].Text[0].Text := Button[Interactions[Interaction].Num].Text[0].Text +
-                                          UCS4ToUTF8String(CharCode);
+      if LastEditedButton <> Interactions[Interaction].Num then
+      begin
+        // First character: replace the existing name
+        Button[Interactions[Interaction].Num].Text[0].Text :=
+          UCS4ToUTF8String(CharCode);
+
+        LastEditedButton := Interactions[Interaction].Num;
+      end
+      else
+      begin
+        // Following characters: append to the name
+        Button[Interactions[Interaction].Num].Text[0].Text :=
+          Button[Interactions[Interaction].Num].Text[0].Text +
+          UCS4ToUTF8String(CharCode);
+      end;
+
       Exit;
     end;
 
@@ -384,6 +399,8 @@ end;
 constructor TScreenPartyTournamentPlayer.Create;
 begin
   inherited Create;
+
+  LastEditedButton := -1;
 
   LoadFromTheme(Theme.PartyTournamentPlayer);
 
