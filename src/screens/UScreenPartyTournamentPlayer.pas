@@ -201,7 +201,9 @@ begin
   // check normal keys
   if (Interactions[Interaction].Typ = iButton) then
   begin
-
+    // Make sure SDL text input is enabled while editing a player name.
+    SetTextInput(true);
+  
     // check normal keys
     if (IsPrintableChar(CharCode)) then
     begin
@@ -457,6 +459,7 @@ begin
   Button[Player16Name].Text[0].Writable := true;
 
   Interaction := 0;
+  SetTextInput(false);
 
 end;
 
