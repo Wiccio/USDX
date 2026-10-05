@@ -75,6 +75,7 @@ type
       constructor Create; override;
       function ShouldHandleInput(PressedKey: cardinal; CharCode: UCS4Char; PressedDown: boolean; out SuppressKey: boolean): boolean; override;
       function ParseInput(PressedKey: cardinal; CharCode: UCS4Char; PressedDown: boolean): boolean; override;
+      function ParseMouse(MouseButton: integer; BtnDown: boolean; X, Y: integer): boolean; override;
       procedure OnShow; override;
   end;
 
@@ -395,7 +396,6 @@ begin
   end;
 end;
 
-constructor TScreenPartyTournamentPlayer.Create;
 function TScreenPartyTournamentPlayer.ParseMouse(MouseButton: integer; BtnDown: boolean; X, Y: integer): boolean;
 begin
   Result := true;
@@ -403,6 +403,7 @@ begin
   SetTextInput(Interactions[Interaction].Typ = iButton);
 end;
 
+constructor TScreenPartyTournamentPlayer.Create;
 begin
   inherited Create;
 
