@@ -408,25 +408,53 @@ begin
   Theme.PartyTournamentPlayer.SelectPlayers.showArrows := true;
   SelectPlayers := AddSelectSlide(Theme.PartyTournamentPlayer.SelectPlayers, CountPlayer, ITournamentPlayers);
 
-  AddButton(Theme.PartyTournamentPlayer.Player1Name);
-  AddButton(Theme.PartyTournamentPlayer.Player2Name);
-  AddButton(Theme.PartyTournamentPlayer.Player3Name);
-  AddButton(Theme.PartyTournamentPlayer.Player4Name);
-
-  AddButton(Theme.PartyTournamentPlayer.Player5Name);
-  AddButton(Theme.PartyTournamentPlayer.Player6Name);
-  AddButton(Theme.PartyTournamentPlayer.Player7Name);
-  AddButton(Theme.PartyTournamentPlayer.Player8Name);
-
-  AddButton(Theme.PartyTournamentPlayer.Player9Name);
-  AddButton(Theme.PartyTournamentPlayer.Player10Name);
-  AddButton(Theme.PartyTournamentPlayer.Player11Name);
-  AddButton(Theme.PartyTournamentPlayer.Player12Name);
-
-  AddButton(Theme.PartyTournamentPlayer.Player13Name);
-  AddButton(Theme.PartyTournamentPlayer.Player14Name);
-  AddButton(Theme.PartyTournamentPlayer.Player15Name);
-  AddButton(Theme.PartyTournamentPlayer.Player16Name);
+  Player1Name := AddButton(Theme.PartyTournamentPlayer.Player1Name);
+  Button[Player1Name].Text[0].Writable := true;
+  
+  Player2Name := AddButton(Theme.PartyTournamentPlayer.Player2Name);
+  Button[Player2Name].Text[0].Writable := true;
+  
+  Player3Name := AddButton(Theme.PartyTournamentPlayer.Player3Name);
+  Button[Player3Name].Text[0].Writable := true;
+  
+  Player4Name := AddButton(Theme.PartyTournamentPlayer.Player4Name);
+  Button[Player4Name].Text[0].Writable := true;
+  
+  Player5Name := AddButton(Theme.PartyTournamentPlayer.Player5Name);
+  Button[Player5Name].Text[0].Writable := true;
+  
+  Player6Name := AddButton(Theme.PartyTournamentPlayer.Player6Name);
+  Button[Player6Name].Text[0].Writable := true;
+  
+  Player7Name := AddButton(Theme.PartyTournamentPlayer.Player7Name);
+  Button[Player7Name].Text[0].Writable := true;
+  
+  Player8Name := AddButton(Theme.PartyTournamentPlayer.Player8Name);
+  Button[Player8Name].Text[0].Writable := true;
+  
+  Player9Name := AddButton(Theme.PartyTournamentPlayer.Player9Name);
+  Button[Player9Name].Text[0].Writable := true;
+  
+  Player10Name := AddButton(Theme.PartyTournamentPlayer.Player10Name);
+  Button[Player10Name].Text[0].Writable := true;
+  
+  Player11Name := AddButton(Theme.PartyTournamentPlayer.Player11Name);
+  Button[Player11Name].Text[0].Writable := true;
+  
+  Player12Name := AddButton(Theme.PartyTournamentPlayer.Player12Name);
+  Button[Player12Name].Text[0].Writable := true;
+  
+  Player13Name := AddButton(Theme.PartyTournamentPlayer.Player13Name);
+  Button[Player13Name].Text[0].Writable := true;
+  
+  Player14Name := AddButton(Theme.PartyTournamentPlayer.Player14Name);
+  Button[Player14Name].Text[0].Writable := true;
+  
+  Player15Name := AddButton(Theme.PartyTournamentPlayer.Player15Name);
+  Button[Player15Name].Text[0].Writable := true;
+  
+  Player16Name := AddButton(Theme.PartyTournamentPlayer.Player16Name);
+  Button[Player16Name].Text[0].Writable := true;
 
   Interaction := 0;
 
