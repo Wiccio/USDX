@@ -201,9 +201,6 @@ begin
   // check normal keys
   if (Interactions[Interaction].Typ = iButton) then
   begin
-    // Make sure SDL text input is enabled while editing a player name.
-    SetTextInput(true);
-  
     // check normal keys
     if (IsPrintableChar(CharCode)) then
     begin
@@ -399,10 +396,18 @@ begin
 end;
 
 constructor TScreenPartyTournamentPlayer.Create;
+function TScreenPartyTournamentPlayer.ParseMouse(MouseButton: integer; BtnDown: boolean; X, Y: integer): boolean;
+begin
+  Result := true;
+  inherited ParseMouse(MouseButton, BtnDown, X, Y);
+  SetTextInput(Interactions[Interaction].Typ = iButton);
+end;
+
 begin
   inherited Create;
 
   LastEditedButton := -1;
+  SetTextInput(false);
 
   LoadFromTheme(Theme.PartyTournamentPlayer);
 
@@ -459,7 +464,6 @@ begin
   Button[Player16Name].Text[0].Writable := true;
 
   Interaction := 0;
-  SetTextInput(false);
 
 end;
 
@@ -469,12 +473,15 @@ var
 begin
   inherited;
 
+  LastEditedButton := -1;
+  SetTextInput(false);
+
   if not Help.SetHelpID(ID) then
     Log.LogError('No Entry for Help-ID ' + ID + ' (ScreenPartyPlayer)');
 
   PartyTournament.Clear;
 
-  // Templates for Names Mod
+  // Localized default player names
   for I := 0 to 15 do
   begin
     if (I < IMaxPlayerCount) and
