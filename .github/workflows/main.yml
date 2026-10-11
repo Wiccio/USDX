@@ -33,11 +33,16 @@ jobs:
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-tools
       - name: Install Dependencies
+        shell: pwsh
         run: |
-          curl.exe -L --max-time 60 -o fpc-installer.exe "https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.win32.and.win64.exe/download"
-          curl.exe -L --max-time 60 -o nsis-3.05-setup.exe "https://sourceforge.net/projects/nsis/files/NSIS%203/3.05/nsis-3.05-setup.exe/download"
-          Start-Process -FilePath ".\\fpc-installer.exe" -ArgumentList "/TYPE=full /VERYSILENT /SP- /SUPPRESSMSGBOXES /NORESTART" -Wait
-          ./nsis-3.05-setup.exe /S
+          curl.exe --fail --location --retry 2 --retry-all-errors --retry-delay 5 --connect-timeout 30 --max-time 300 --output fpc-installer.exe "https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.win32.and.win64.exe/download"
+          if ($LASTEXITCODE -ne 0) { throw "Free Pascal download failed (curl exit code $LASTEXITCODE)" }
+          curl.exe --fail --location --retry 2 --retry-all-errors --retry-delay 5 --connect-timeout 30 --max-time 300 --output nsis-3.05-setup.exe "https://sourceforge.net/projects/nsis/files/NSIS%203/3.05/nsis-3.05-setup.exe/download"
+          if ($LASTEXITCODE -ne 0) { throw "NSIS download failed (curl exit code $LASTEXITCODE)" }
+          $fpc = Start-Process -FilePath ".\\fpc-installer.exe" -ArgumentList "/TYPE=full /VERYSILENT /SP- /SUPPRESSMSGBOXES /NORESTART" -Wait -PassThru
+          if ($fpc.ExitCode -ne 0) { throw "Free Pascal installer failed (exit code $($fpc.ExitCode))" }
+          $nsis = Start-Process -FilePath ".\\nsis-3.05-setup.exe" -ArgumentList "/S" -Wait -PassThru
+          if ($nsis.ExitCode -ne 0) { throw "NSIS installer failed (exit code $($nsis.ExitCode))" }
       - name: Download prebuilt DLLs
         run: |
           python dldlls.py
